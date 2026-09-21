@@ -14,9 +14,7 @@ public class Solution extends GuessGame {
         while(i <= x) {
             int mid = i + (x - i) / 2;
             if(guess(mid) == 0) return mid;
-            else if(guess(mid) == 1) {
-                i = mid + 1;
-            }
+            else if(guess(mid) == 1) i = mid + 1;
             else x = mid;
         }
         return 0;
