@@ -5,7 +5,7 @@ class Solution {
         return ans;
     }
     private void find(int[] nums, int i, List<Integer> list, List<List<Integer>> ans) {
-        if (i == nums.length) {
+        if(i == nums.length) {
             ans.add(new ArrayList<>(list));
             return;
         }
