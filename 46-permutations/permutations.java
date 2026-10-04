@@ -1,22 +1,24 @@
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> ans = new ArrayList<>();
-        per(nums,new int[nums.length],new ArrayList<>(),ans);
+        per(nums,0,ans);
         return ans;
     }
-    public static void per(int[] arr,int[] map,List<Integer> list,List<List<Integer>> ans) {
-        if(list.size() == arr.length) {
-            ans.add(new ArrayList<>(list));
+    public static void per(int[] arr,int i,List<List<Integer>> ans) {
+        if(i == arr.length) {
+            List<Integer> list = new ArrayList<>();
+            for(int x : arr) list.add(x);
+            ans.add(list);
             return;
         }
-        for(int j = 0;j < arr.length;j++) {
-            if(map[j] == 0) {
-                list.add(arr[j]);
-                map[j] = 1;
-                per(arr,map,list,ans);
-                list.removeLast();
-                map[j] = 0;
-            }
+        for(int j = i;j < arr.length;j++) {
+            int t = arr[i];
+            arr[i] = arr[j];
+            arr[j] = t;
+            per(arr,i+1,ans);
+            t = arr[i];
+            arr[i] = arr[j];
+            arr[j] = t;
         }
     }
 }
