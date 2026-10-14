@@ -1,19 +1,13 @@
 class Solution {
     public String maxSumOfSquares(int num, int sum) {
-        int[] digits = new int[num];
-        
-        for(int i = num - 1; i >= 0; i--) {
-            int d = Math.min(9, sum);
-            digits[i] = d;
-            sum -= d;
-        }
-        
-        if(sum > 0) return "";
+        int i = 0;
         StringBuilder sb = new StringBuilder();
-        for(int d : digits) {
-            sb.append(d);
+        for(i = num - 1; i >= 0 && sum > 0; i--) {
+            sb.append(Integer.toString(Math.min(9, sum)));
+            sum -= Math.min(9, sum);
         }
-        sb.reverse();
+        for(int k = i;k >= 0;k--) sb.append("0");
+        if(sum > 0) return "";
         return sb.toString();
     }
 }
