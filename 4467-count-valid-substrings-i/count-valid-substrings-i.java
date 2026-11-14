@@ -1,16 +1,14 @@
 class Solution {
     public long countValidSubstrings(String s) {
-        StringBuilder sb = new StringBuilder();
-        long ans = 0;
-        for(int i = 0;i < s.length();i++) {
-            sb.append(s.charAt(i));
-            int len = sb.length();
-            if (len >= 3 && sb.charAt(len - 3) == 'a' && sb.charAt(len - 2) == 'b' && sb.charAt(len - 1) == 'c') {
-                sb.setLength(0);
-                sb.append("bc");
-            }
-            ans += sb.length();
+        int i = 0;
+        int j = 0;
+        int l = s.length();
+        long count = 0;
+        while(j < l){
+            if(j>=2 && s.charAt(j-2)=='a' && s.charAt(j-1)=='b' && s.charAt(j)=='c') i=j-1;
+            count += (j-i+1);
+            j++;
         }
-        return ans;
+        return count;
     }
 }
